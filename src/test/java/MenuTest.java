@@ -42,12 +42,10 @@ public class MenuTest {
     @Test
     public void clickSubcategoryInMenu() {
         WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
+        WebElement subcategoryInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-2"));
 
         Actions builder = new Actions(driver);
-        builder.moveToElement(rubberDucksInMenu).perform();
-
-        WebElement subcategoryInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-2"));
-        subcategoryInMenu.click();
+        builder.moveToElement(rubberDucksInMenu).click(subcategoryInMenu).perform();
 
         WebElement textSubcategory = driver.findElement(By.cssSelector("h1.title"));
 
