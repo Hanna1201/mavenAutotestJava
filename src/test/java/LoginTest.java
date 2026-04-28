@@ -99,7 +99,7 @@ public class LoginTest extends BaseTest{
         passwordInput.sendKeys(existingUserPassword);
         loginButton.click();
 
-        WebElement logout = driver.findElement(By.cssSelector("#box-account a[href='https://litecart.stqa.ru/en/logout']"));
+        WebElement logout = driver.findElement(By.cssSelector("#box-account a[href$='logout']"));
 
         logout.click();
 
