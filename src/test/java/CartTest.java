@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class CartTest extends BaseTest{
+public class CartTest extends BaseTest {
 
     @Test
-    public void addProductToCart(){
+    public void addProductToCart() {
 
         WebElement firstProductOnMainPage = driver.findElement(By.cssSelector("li.product:not(:has(.sticker.sale))"));
         firstProductOnMainPage.click();
@@ -31,7 +31,7 @@ public class CartTest extends BaseTest{
     }
 
     @Test
-    public void addProductWithSaleToCart(){
+    public void addProductWithSaleToCart() {
 
         WebElement saleProductOnMainPage = driver.findElement(By.cssSelector("#box-most-popular .sale"));
         saleProductOnMainPage.click();
@@ -54,7 +54,7 @@ public class CartTest extends BaseTest{
     }
 
     @Test
-    public void removeProductToCart(){
+    public void removeProductToCart() {
 
         WebElement firstProductOnMainPage = driver.findElement(By.cssSelector("li.product:not(:has(.sticker.sale))"));
         firstProductOnMainPage.click();
@@ -75,5 +75,4 @@ public class CartTest extends BaseTest{
 
         Assert.assertEquals(textEmptyCart.getText(), "There are no items in your cart.");
     }
-
 }

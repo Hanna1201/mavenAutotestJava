@@ -8,10 +8,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-public class CatalogTest extends BaseTest{
+public class CatalogTest extends BaseTest {
 
     @Test
-    public void openCategoryPage(){
+    public void openCategoryPage() {
         WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
         rubberDucksInMenu.click();
 
@@ -22,7 +22,7 @@ public class CatalogTest extends BaseTest{
     }
 
     @Test
-    public void sortProductsByName(){
+    public void sortProductsByName() {
         WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
         rubberDucksInMenu.click();
 
@@ -35,7 +35,7 @@ public class CatalogTest extends BaseTest{
     }
 
     @Test
-    public void openProductCard(){
+    public void openProductCard() {
         WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
         rubberDucksInMenu.click();
 
@@ -49,7 +49,7 @@ public class CatalogTest extends BaseTest{
     }
 
     @Test
-    public void openProductPreview(){
+    public void openProductPreview() {
         WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
         rubberDucksInMenu.click();
 
@@ -61,5 +61,4 @@ public class CatalogTest extends BaseTest{
 
         Assert.assertTrue(zoomImg.isDisplayed());
     }
-
 }
