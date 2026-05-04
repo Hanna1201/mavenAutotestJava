@@ -1,78 +1,56 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import object_based_po.CartPage;
+import object_based_po.HeaderPage;
+import object_based_po.MostPopularPage;
+import object_based_po.ProductCartPage;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+public class CartTest extends TestBase {
 
-public class CartTest extends BaseTest {
+    private MostPopularPage mostPopularPage;
+    private ProductCartPage productCartPage;
+    private HeaderPage headerPage;
+    private CartPage cartPage;
+
+    @BeforeMethod
+    public void initPages() {
+        mostPopularPage = new MostPopularPage(driver);
+        productCartPage = new ProductCartPage(driver);
+        headerPage = new HeaderPage(driver);
+        cartPage = new CartPage(driver);
+    }
 
     @Test
     public void addProductToCart() {
+        mostPopularPage.clickOnProductCardWithoutSale();
+        productCartPage.addProductToCart();
+        headerPage.waitUntilCartQuantityIs("1");
+        headerPage.clickCartInHeader();
 
-        WebElement firstProductOnMainPage = driver.findElement(By.cssSelector("li.product:not(:has(.sticker.sale))"));
-        firstProductOnMainPage.click();
-
-        WebElement addToCartButton = driver.findElement(By.cssSelector("button[value='Add To Cart']"));
-        addToCartButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBe(By.cssSelector("#cart .quantity"), "1"));
-
-        WebElement cartInHeader = driver.findElement(By.cssSelector("#cart-wrapper #cart"));
-        cartInHeader.click();
-
-        WebElement quantity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("quantity")));
-
-        Assert.assertEquals(quantity.getAttribute("value"), "1");
+        Assert.assertEquals(cartPage.getQuantity(), "1");
     }
 
     @Test
     public void addProductWithSaleToCart() {
+        mostPopularPage.clickOnProductCardWithSale();
+        productCartPage.selectSize("Small");
+        productCartPage.addProductToCart();
+        headerPage.waitUntilCartQuantityIs("1");
+        headerPage.clickCartInHeader();
 
-        WebElement saleProductOnMainPage = driver.findElement(By.cssSelector("#box-most-popular .sale"));
-        saleProductOnMainPage.click();
-
-        Select dropdown = new Select(driver.findElement(By.name("options[Size]")));
-        dropdown.selectByValue("Small");
-
-        WebElement addToCartButton = driver.findElement(By.cssSelector("button[value='Add To Cart']"));
-        addToCartButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBe(By.cssSelector("#cart .quantity"), "1"));
-
-        WebElement cartInHeader = driver.findElement(By.cssSelector("#cart-wrapper #cart"));
-        cartInHeader.click();
-
-        WebElement size = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Size:')]")));
-
-        Assert.assertEquals(size.getText(), "Size: Small");
+        Assert.assertEquals(cartPage.getSize(), "Size: Small");
     }
 
     @Test
     public void removeProductToCart() {
+        mostPopularPage.clickOnProductCardWithoutSale();
+        productCartPage.addProductToCart();
+        headerPage.waitUntilCartQuantityIs("1");
+        headerPage.clickCartInHeader();
+        ;
+        cartPage.clickRemoveFromCart();
 
-        WebElement firstProductOnMainPage = driver.findElement(By.cssSelector("li.product:not(:has(.sticker.sale))"));
-        firstProductOnMainPage.click();
-
-        WebElement addToCartButton = driver.findElement(By.cssSelector("button[value='Add To Cart']"));
-        addToCartButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBe(By.cssSelector("#cart .quantity"), "1"));
-
-        WebElement cartInHeader = driver.findElement(By.cssSelector("#cart-wrapper #cart"));
-        cartInHeader.click();
-
-        WebElement removeButtonOnCart = driver.findElement(By.name("remove_cart_item"));
-        removeButtonOnCart.click();
-
-        WebElement textEmptyCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#checkout-cart-wrapper em")));
-
-        Assert.assertEquals(textEmptyCart.getText(), "There are no items in your cart.");
+        Assert.assertEquals(cartPage.getTextRemoveFromCart(), "There are no items in your cart.");
     }
 }

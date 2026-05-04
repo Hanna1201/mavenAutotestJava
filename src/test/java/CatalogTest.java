@@ -1,64 +1,54 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import object_based_po.*;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.time.Duration;
 
-public class CatalogTest extends BaseTest {
+public class CatalogTest extends TestBase {
+
+    private MenuPage menuPage;
+    private CatalogPage catalogPage;
+    private ProductCartPage productCartPage;
+
+    @BeforeMethod
+    public void initPages() {
+        menuPage = new MenuPage(driver);
+        catalogPage = new CatalogPage(driver);
+        productCartPage = new ProductCartPage(driver);
+    }
 
     @Test
     public void openCategoryPage() {
-        WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
-        rubberDucksInMenu.click();
+        menuPage.clickRubberDucksInMenu();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(driver.getTitle(), "Rubber Ducks | My Store");
-        softAssert.assertTrue(driver.getCurrentUrl().contains("rubber-ducks-c-1"));
+        softAssert.assertEquals(catalogPage.getPageTitle(), "Rubber Ducks | My Store");
+        softAssert.assertTrue(catalogPage.getCurrentUrl().contains("rubber-ducks-c-1"));
         softAssert.assertAll();
     }
 
     @Test
     public void sortProductsByName() {
-        WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
-        rubberDucksInMenu.click();
+        menuPage.clickRubberDucksInMenu();
+        catalogPage.clickOnFilterName();
 
-        WebElement nameFilter = driver.findElement(By.cssSelector("a[href$='sort=name']"));
-        nameFilter.click();
-
-        WebElement firstProductName = driver.findElement(By.cssSelector(".products .product:first-child .name"));
-
-        Assert.assertEquals(firstProductName.getText(), "Blue Duck");
+        Assert.assertEquals(catalogPage.getNameFirstProduct(), "Blue Duck");
     }
 
     @Test
     public void openProductCard() {
-        WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
-        rubberDucksInMenu.click();
+        menuPage.clickRubberDucksInMenu();
+        catalogPage.clickOnFirstProduct();
 
-        WebElement firstProduct = driver.findElement(By.cssSelector(".products .product:first-child"));
-        firstProduct.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement logo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[title='ACME Corp.']")));
-
-        Assert.assertTrue(logo.isDisplayed());
+        Assert.assertTrue(productCartPage.isLogoProductDisplayed());
     }
 
     @Test
     public void openProductPreview() {
-        WebElement rubberDucksInMenu = driver.findElement(By.cssSelector("nav#site-menu li.category-1"));
-        rubberDucksInMenu.click();
+        menuPage.clickRubberDucksInMenu();
+        catalogPage.clickOnZoomImage();
 
-        WebElement zoomFirstProduct = driver.findElement(By.cssSelector(".products .product:first-child .zoomable"));
-        zoomFirstProduct.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement zoomImg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fancybox-img")));
-
-        Assert.assertTrue(zoomImg.isDisplayed());
+        Assert.assertTrue(catalogPage.isZoomImgDisplayed());
     }
 }
