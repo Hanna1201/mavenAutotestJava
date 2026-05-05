@@ -15,10 +15,10 @@ public class CartTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        mostPopularPage = new MostPopularPage(driver);
-        productCartPage = new ProductCartPage(driver);
-        headerPage = new HeaderPage(driver);
-        cartPage = new CartPage(driver);
+        mostPopularPage = new MostPopularPage(getDriver());
+        productCartPage = new ProductCartPage(getDriver());
+        headerPage = new HeaderPage(getDriver());
+        cartPage = new CartPage(getDriver());
     }
 
     @Test

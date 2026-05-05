@@ -15,9 +15,9 @@ public class LoginTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        loginPage = new LoginPage(driver);
-        accountPage = new AccountPage(driver);
-        notificationPage = new NotificationPage(driver);
+        loginPage = new LoginPage(getDriver());
+        accountPage = new AccountPage(getDriver());
+        notificationPage = new NotificationPage(getDriver());
     }
 
     @Test

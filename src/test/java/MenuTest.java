@@ -13,10 +13,10 @@ public class MenuTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        menuPage = new MenuPage(driver);
-        catalogPage = new CatalogPage(driver);
-        subCategoryPage = new SubCategoryPage(driver);
-        homePage = new HomePage(driver);
+        menuPage = new MenuPage(getDriver());
+        catalogPage = new CatalogPage(getDriver());
+        subCategoryPage = new SubCategoryPage(getDriver());
+        homePage = new HomePage(getDriver());
     }
 
     @Test

@@ -13,9 +13,9 @@ public class CatalogTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        menuPage = new MenuPage(driver);
-        catalogPage = new CatalogPage(driver);
-        productCartPage = new ProductCartPage(driver);
+        menuPage = new MenuPage(getDriver());
+        catalogPage = new CatalogPage(getDriver());
+        productCartPage = new ProductCartPage(getDriver());
     }
 
     @Test
