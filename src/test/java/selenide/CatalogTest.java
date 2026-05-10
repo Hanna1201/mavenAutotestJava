@@ -1,9 +1,12 @@
-import object_based_po.*;
+package selenide;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
+import selenide.object_based_po.CatalogPage;
+import selenide.object_based_po.MenuPage;
+import selenide.object_based_po.ProductCartPage;
 
 public class CatalogTest extends TestBase {
 
@@ -13,9 +16,9 @@ public class CatalogTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        menuPage = new MenuPage(getDriver());
-        catalogPage = new CatalogPage(getDriver());
-        productCartPage = new ProductCartPage(getDriver());
+        menuPage = new MenuPage();
+        catalogPage = new CatalogPage();
+        productCartPage = new ProductCartPage();
     }
 
     @Test

@@ -1,10 +1,12 @@
-import object_based_po.CartPage;
-import object_based_po.HeaderPage;
-import object_based_po.MostPopularPage;
-import object_based_po.ProductCartPage;
+package selenium;
+import selenium.object_based_po.CartPage;
+import selenium.object_based_po.HeaderPage;
+import selenium.object_based_po.MostPopularPage;
+import selenium.object_based_po.ProductCartPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import selenium.TestBase;
 
 public class CartTest extends TestBase {
 

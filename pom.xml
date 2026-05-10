@@ -40,6 +40,14 @@
             <artifactId>selenium-support</artifactId>
             <version>${selenium.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>7.9.4</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

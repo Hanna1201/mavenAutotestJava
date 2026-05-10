@@ -1,4 +1,4 @@
-package object_based_po;
+package selenium.object_based_po;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

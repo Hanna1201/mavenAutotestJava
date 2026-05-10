@@ -1,7 +1,11 @@
-import object_based_po.*;
+package selenium;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import selenium.TestBase;
+import selenium.object_based_po.AccountPage;
+import selenium.object_based_po.LoginPage;
+import selenium.object_based_po.NotificationPage;
 
 public class LoginTest extends TestBase {
 

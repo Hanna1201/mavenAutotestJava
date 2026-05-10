@@ -1,8 +1,13 @@
-import object_based_po.*;
+package selenide;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import selenide.object_based_po.CatalogPage;
+import selenide.object_based_po.HomePage;
+import selenide.object_based_po.MenuPage;
+import selenide.object_based_po.SubCategoryPage;
 
 public class MenuTest extends TestBase {
 
@@ -13,10 +18,10 @@ public class MenuTest extends TestBase {
 
     @BeforeMethod
     public void initPages() {
-        menuPage = new MenuPage(getDriver());
-        catalogPage = new CatalogPage(getDriver());
-        subCategoryPage = new SubCategoryPage(getDriver());
-        homePage = new HomePage(getDriver());
+        menuPage = new MenuPage();
+        catalogPage = new CatalogPage();
+        subCategoryPage = new SubCategoryPage();
+        homePage = new HomePage();
     }
 
     @Test
