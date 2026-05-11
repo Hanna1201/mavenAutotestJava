@@ -5,14 +5,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import selenium.listeners.ScreenshotListener;
 
 import java.time.Duration;
 
+@Listeners(ScreenshotListener.class)
 public class TestBase {
 
     //public static WebDriver driver;
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    protected WebDriver getDriver() {
+    public WebDriver getDriver() {
         return driver.get();
     }
 
