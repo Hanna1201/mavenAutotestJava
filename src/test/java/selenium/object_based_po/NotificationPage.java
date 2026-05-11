@@ -1,5 +1,6 @@
 package selenium.object_based_po;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,10 +19,12 @@ public class NotificationPage {
         this.driver = driver;
     }
 
+    @Step("Get error notification text")
     public String getErrorMessageText() {
         return getNotificationText(errorNotification);
     }
 
+    @Step("Get success notification text")
     public String getSuccessMessageText() {
         return getNotificationText(successNotification);
     }

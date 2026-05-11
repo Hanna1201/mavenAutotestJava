@@ -1,5 +1,6 @@
 package selenium.object_based_po;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,21 +21,25 @@ public class CartPage {
         this.driver = driver;
     }
 
+    @Step("Get product quantity in cart")
     public String getQuantity() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(quantity)).getAttribute("value");
     }
 
+    @Step("Get product size in cart")
     public String getSize() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(size)).getText();
     }
 
+    @Step("Remove product from cart")
     public void clickRemoveFromCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(removeButtonOnCart)).click();
     }
 
+    @Step("Get empty cart message")
     public String getTextRemoveFromCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(textEmptyCart)).getText();

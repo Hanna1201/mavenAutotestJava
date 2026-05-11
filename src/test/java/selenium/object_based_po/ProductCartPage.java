@@ -1,5 +1,6 @@
 package selenium.object_based_po;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,15 +21,18 @@ public class ProductCartPage {
         this.driver = driver;
     }
 
+    @Step("Add product to cart")
     public void addProductToCart() {
         driver.findElement(addToCartButton).click();
     }
 
+    @Step("Select product size: {size}")
     public void selectSize(String size) {
         Select dropdown = new Select(driver.findElement(sizeDropdown));
         dropdown.selectByValue(size);
     }
 
+    @Step("Check that product logo is displayed")
     public boolean isLogoProductDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(logoProduct)).isDisplayed();

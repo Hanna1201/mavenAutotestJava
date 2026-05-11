@@ -6,6 +6,7 @@
             <class name="selenium.LoginTest"/>
             <class name="selenium.CatalogTest"/>
             <class name="selenium.CartTest"/>
+            <class name="selenium.MenuTest"/>
         </classes>
     </test>
 

@@ -1,5 +1,6 @@
 package selenium.object_based_po;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -17,10 +18,12 @@ public class MenuPage {
         this.driver = driver;
     }
 
+    @Step("Click Rubber Ducks in menu")
     public void clickRubberDucksInMenu() {
         driver.findElement(rubberDucksInMenu).click();
     }
 
+    @Step("Open Subcategory from menu")
     public void openSubcategory() {
         Actions actions = new Actions(driver);
 
@@ -29,6 +32,7 @@ public class MenuPage {
                 .perform();
     }
 
+    @Step("Click Home in menu")
     public void clickHomeInMenu() {
         driver.findElement(homeInMenu).click();
     }

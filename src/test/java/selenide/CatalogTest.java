@@ -1,5 +1,9 @@
 package selenide;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +12,8 @@ import selenide.object_based_po.CatalogPage;
 import selenide.object_based_po.MenuPage;
 import selenide.object_based_po.ProductCartPage;
 
+@Epic("Catalog")
+@Feature("Catalog product navigation and sorting")
 public class CatalogTest extends TestBase {
 
     private MenuPage menuPage;
@@ -21,7 +27,9 @@ public class CatalogTest extends TestBase {
         productCartPage = new ProductCartPage();
     }
 
-    @Test
+    @Story("Open category page")
+    @Description("When user clicks Rubber Ducks menu item, Rubber Ducks category page is opened")
+    @Test(description = "Open Rubber Ducks category page")
     public void openCategoryPage() {
         menuPage.clickRubberDucksInMenu();
 
@@ -31,7 +39,9 @@ public class CatalogTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @Test
+    @Story("Sort products by name")
+    @Description("When user opens Rubber Ducks category and clicks Name filter, products are sorted by name")
+    @Test(description = "Sort products by name")
     public void sortProductsByName() {
         menuPage.clickRubberDucksInMenu();
         catalogPage.clickOnFilterName();
@@ -39,7 +49,9 @@ public class CatalogTest extends TestBase {
         Assert.assertEquals(catalogPage.getNameFirstProduct(), "Blue Duck");
     }
 
-    @Test
+    @Story("Open product card")
+    @Description("When user clicks the first product in catalog, product card is opened")
+    @Test(description = "Open product card")
     public void openProductCard() {
         menuPage.clickRubberDucksInMenu();
         catalogPage.clickOnFirstProduct();
@@ -47,7 +59,9 @@ public class CatalogTest extends TestBase {
         Assert.assertTrue(productCartPage.isLogoProductDisplayed());
     }
 
-    @Test
+    @Story("Open product preview")
+    @Description("When user clicks product zoom image, product preview is displayed")
+    @Test(description = "Open product preview")
     public void openProductPreview() {
         menuPage.clickRubberDucksInMenu();
         catalogPage.clickOnZoomImage();

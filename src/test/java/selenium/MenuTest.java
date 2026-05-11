@@ -1,5 +1,9 @@
 package selenium;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,6 +13,8 @@ import selenium.object_based_po.HomePage;
 import selenium.object_based_po.MenuPage;
 import selenium.object_based_po.SubCategoryPage;
 
+@Epic("Menu")
+@Feature("Menu navigation")
 public class MenuTest extends TestBase {
 
     private MenuPage menuPage;
@@ -24,7 +30,9 @@ public class MenuTest extends TestBase {
         homePage = new HomePage(getDriver());
     }
 
-    @Test
+    @Story("Open Rubber Ducks category from menu")
+    @Description("When user clicks Rubber Ducks in menu, Rubber Ducks category page is opened")
+    @Test(description = "Open Rubber Ducks category from menu")
     public void clickRubberDucksInMenu() {
         menuPage.clickRubberDucksInMenu();
 
@@ -34,14 +42,18 @@ public class MenuTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @Test
+    @Story("Open Subcategory from menu")
+    @Description("When user opens Rubber Ducks menu and clicks Subcategory, Subcategory page is opened")
+    @Test(description = "Open Subcategory from menu")
     public void clickSubcategoryInMenu() {
         menuPage.openSubcategory();
 
         Assert.assertEquals(subCategoryPage.getSubcategoryText(), "Subcategory");
     }
 
-    @Test
+    @Story("Return to home page from menu")
+    @Description("When user opens Rubber Ducks category and clicks Home in menu, home page is opened")
+    @Test(description = "Return to home page from menu")
     public void clickRubberDucksThenClickHomeInMenu() {
         menuPage.clickRubberDucksInMenu();
         menuPage.clickHomeInMenu();
